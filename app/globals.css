@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* compensa o header fixo ao saltar para âncoras */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-cream text-ink antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  ::selection {
+    @apply bg-accent/15 text-ink;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
+      transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50
+      focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-white shadow-soft hover:bg-accent-dark hover:shadow-lift
+      active:scale-[0.98];
+  }
+
+  .btn-dark {
+    @apply btn bg-ink text-white hover:bg-ink-soft active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply btn border border-ink/15 bg-white/60 text-ink hover:border-ink/30 hover:bg-white
+      active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn text-ink hover:bg-ink/5;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent-tint
+      px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-dark;
+  }
+
+  .card-surface {
+    @apply rounded-3xl border border-ink/5 bg-white shadow-card;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* esconde a scrollbar mantendo o scroll (filtros em mobile) */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
