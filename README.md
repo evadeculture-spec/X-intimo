@@ -50,7 +50,32 @@ A imagem Open Graph é gerada automaticamente em `app/opengraph-image.tsx`.
 | **Produtos** | `data/products.ts` |
 | **Marcas** | `data/brands.ts` |
 | **Categorias** | `data/categories.ts` |
+| **Modelos / Lookbook (fotos)** | `data/models.ts` |
 | **Logótipo** | `public/logo.svg` + `components/Logo.tsx` |
+
+## Experiência 3D e efeitos
+
+- **Hero com fundo 3D animado** (`components/three/SceneHero.tsx`): degradê warm por
+  shader, **tecido/seda em movimento**, **partículas**, **painéis flutuantes de
+  modelos** com parallax ao rato e **bloom + vinheta** (pós-processamento cinematográfico).
+- **Performance e acessibilidade automáticas:**
+  - Desktop → qualidade alta (com bloom).
+  - Telemóvel → versão mais leve (menos partículas, sem bloom).
+  - `prefers-reduced-motion` → fundo estático elegante (sem 3D).
+  - A cena é carregada de forma dinâmica, por isso **não pesa no bundle inicial**.
+- **Secção Lookbook** (`components/Lookbook.tsx`): galeria editorial de modelos com
+  produtos Ysabel Mora, com tilt no hover.
+
+### Fotos de modelos (Ysabel Mora)
+
+Os modelos usam **placeholders elegantes** (gerados por código, marcados como
+placeholder) tanto no hero 3D como no Lookbook. Para usar fotografias reais:
+
+1. Coloca as imagens em `public/models/` (ex.: `public/models/termico.jpg`).
+2. Em `data/models.ts`, troca `image: null` por `image: "/models/termico.jpg"`.
+
+As fotos aparecem automaticamente no hero 3D **e** no Lookbook, com fallback
+seguro para o placeholder se a imagem faltar.
 
 ### Número de WhatsApp
 

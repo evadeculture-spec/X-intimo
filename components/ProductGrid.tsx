@@ -27,7 +27,9 @@ export function ProductGrid() {
   }, [filters]);
 
   return (
-    <section id="produtos" className="container-x py-16 sm:py-24">
+    <section id="produtos" className="relative overflow-hidden py-16 sm:py-24">
+      <div className="pointer-events-none absolute right-[-8%] top-32 -z-10 h-80 w-80 rounded-full bg-accent-soft/10 blur-3xl" />
+      <div className="container-x">
       <SectionHeading
         eyebrow="Produtos em destaque"
         title="Escolha as suas peças favoritas"
@@ -55,6 +57,7 @@ export function ProductGrid() {
           </AnimatePresence>
         </motion.div>
       )}
+      </div>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
 import { BrandHighlights } from "@/components/BrandHighlights";
+import { Lookbook } from "@/components/Lookbook";
 import { CategoryGrid } from "@/components/CategoryGrid";
 import { ProductGrid } from "@/components/ProductGrid";
 import { PromoBanner } from "@/components/PromoBanner";
@@ -19,6 +20,7 @@ export default function HomePage() {
         <Hero />
         <TrustBar />
         <BrandHighlights />
+        <Lookbook />
         <CategoryGrid />
         <ProductGrid />
         <PromoBanner />
