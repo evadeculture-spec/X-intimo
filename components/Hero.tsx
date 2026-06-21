@@ -60,15 +60,21 @@ export function Hero() {
         )}
       </div>
 
-      {/* Scrim para legibilidade do texto (mais forte à esquerda/baixo) */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-cream/85 via-cream/40 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-cream to-transparent" />
+      {/* Scrim para legibilidade do texto central (vinheta suave + brilho no centro) */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-cream/55 via-transparent to-cream/75" />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 45%, rgba(250,248,245,0.72), rgba(250,248,245,0) 70%)",
+        }}
+      />
 
       {/* grão subtil */}
       <div className="grain pointer-events-none absolute inset-0 -z-10 opacity-[0.06]" />
 
       <div className="container-x w-full pt-28 pb-16 sm:pt-32 lg:pt-24">
-        <div className="flex max-w-2xl flex-col items-start gap-6">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
           <motion.span
             className="eyebrow backdrop-blur-sm"
             variants={fade}
@@ -103,7 +109,7 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col gap-3 sm:flex-row"
+            className="flex flex-col gap-3 sm:flex-row sm:justify-center"
             variants={fade}
             custom={3}
             initial="hidden"
@@ -125,7 +131,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-muted"
+            className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-muted"
             variants={fade}
             custom={4}
             initial="hidden"

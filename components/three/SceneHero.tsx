@@ -121,10 +121,12 @@ function Silk({ quality }: { quality: Quality }) {
 /* ------------------------------------------------------------------ */
 /* Painéis de modelos (Lookbook flutuante)                             */
 /* ------------------------------------------------------------------ */
+// Painéis dispostos a emoldurar o texto central (uns à esquerda, outros à direita).
 const PANEL_LAYOUT = [
-  { position: [2.4, 0.4, 0] as const, scale: 1.0, rot: -0.12, float: 1.1 },
-  { position: [3.6, -1.1, -0.8] as const, scale: 0.78, rot: 0.1, float: 1.5 },
-  { position: [1.5, 1.7, -1.2] as const, scale: 0.62, rot: 0.16, float: 1.8 },
+  { position: [-3.5, 0.3, -0.4] as const, scale: 0.95, rot: 0.16, float: 1.1 },
+  { position: [3.7, -0.2, -0.6] as const, scale: 0.92, rot: -0.16, float: 1.4 },
+  { position: [-2.4, -1.7, -1.4] as const, scale: 0.6, rot: 0.2, float: 1.7 },
+  { position: [2.7, 1.7, -1.6] as const, scale: 0.58, rot: -0.18, float: 1.9 },
 ];
 
 function ModelPanels() {
