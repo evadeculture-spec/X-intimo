@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Reveal } from "./Reveal";
+import { FlowerGlyph } from "./FloralAccent";
 
 /** Cabeçalho reutilizável de secção (eyebrow + título + subtítulo). */
 export function SectionHeading({
@@ -21,7 +22,12 @@ export function SectionHeading({
     <Reveal
       className={`flex max-w-2xl flex-col gap-4 ${alignment} ${className}`}
     >
-      {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
+      {eyebrow ? (
+        <span className="eyebrow">
+          <FlowerGlyph className="h-3.5 w-3.5" color="#C1351D" />
+          {eyebrow}
+        </span>
+      ) : null}
       <h2 className="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl text-balance">
         {title}
       </h2>

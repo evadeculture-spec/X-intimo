@@ -23,8 +23,9 @@ export default function HomePage() {
         <Lookbook />
         <CategoryGrid />
         <ProductGrid />
-        <PromoBanner />
+        {/* "Como comprar" logo após os produtos: remove fricção no momento da decisão */}
         <HowToBuy />
+        <PromoBanner />
         <ContactSection />
       </main>
       <Footer />
