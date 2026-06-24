@@ -15,11 +15,11 @@ export function makePetalGeometry(): THREE.ShapeGeometry {
   return g;
 }
 
-/** Paleta coral/vermelho/rosa retirada da fotografia das flores. */
+/** Paleta vermelho vivo (com leve variação quente) inspirada nas flores da marca. */
 export const FLOWER_PALETTE = [
-  "#E8755C",
-  "#C0392B",
-  "#F08C6E",
-  "#F6B5A6",
-  "#D84B36",
+  "#E11900",
+  "#D6001C",
+  "#FF2A1A",
+  "#C20012",
+  "#F0330F",
 ];

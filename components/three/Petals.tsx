@@ -21,7 +21,15 @@ interface PetalState {
 }
 
 /** Pétalas a cair suavemente (instanced — uma só draw call). */
-export function Petals({ count = 40, area = 13 }: { count?: number; area?: number }) {
+export function Petals({
+  count = 40,
+  area = 13,
+  opacity = 0.96,
+}: {
+  count?: number;
+  area?: number;
+  opacity?: number;
+}) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const geometry = useMemo(() => makePetalGeometry(), []);
   const material = useMemo(
@@ -31,9 +39,9 @@ export function Petals({ count = 40, area = 13 }: { count?: number; area?: numbe
         roughness: 0.65,
         metalness: 0,
         transparent: true,
-        opacity: 0.96,
+        opacity,
       }),
-    [],
+    [opacity],
   );
   const dummy = useMemo(() => new THREE.Object3D(), []);
 

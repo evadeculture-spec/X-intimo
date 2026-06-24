@@ -49,11 +49,11 @@ function Flower({
 }
 
 const LAYOUT = [
-  { position: [-3.7, 0.7, -0.6] as const, scale: 0.9, color: "#E8755C", spin: 0.25, float: 1.1 },
-  { position: [3.8, 0.2, -0.9] as const, scale: 1.0, color: "#C0392B", spin: -0.2, float: 1.4 },
-  { position: [-2.7, -1.9, -1.3] as const, scale: 0.7, color: "#F08C6E", spin: 0.3, float: 1.7 },
-  { position: [2.9, 1.9, -1.6] as const, scale: 0.62, color: "#D84B36", spin: -0.28, float: 1.9 },
-  { position: [0.2, -2.4, -2] as const, scale: 0.55, color: "#F6B5A6", spin: 0.22, float: 2.1 },
+  { position: [-3.7, 0.7, -0.6] as const, scale: 0.9, color: "#E11900", spin: 0.25, float: 1.1 },
+  { position: [3.8, 0.2, -0.9] as const, scale: 1.0, color: "#D6001C", spin: -0.2, float: 1.4 },
+  { position: [-2.7, -1.9, -1.3] as const, scale: 0.7, color: "#FF2A1A", spin: 0.3, float: 1.7 },
+  { position: [2.9, 1.9, -1.6] as const, scale: 0.62, color: "#C20012", spin: -0.28, float: 1.9 },
+  { position: [0.2, -2.4, -2] as const, scale: 0.55, color: "#F0330F", spin: 0.22, float: 2.1 },
 ];
 
 /** Conjunto de flores a flutuar, a emoldurar o texto central. */

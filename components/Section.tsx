@@ -24,7 +24,7 @@ export function SectionHeading({
     >
       {eyebrow ? (
         <span className="eyebrow">
-          <FlowerGlyph className="h-3.5 w-3.5" color="#C1351D" />
+          <FlowerGlyph className="h-3.5 w-3.5" color="#E11900" />
           {eyebrow}
         </span>
       ) : null}

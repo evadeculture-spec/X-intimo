@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { StoreProvider } from "@/context/StoreContext";
+import { SiteBackground } from "@/components/SiteBackground";
 import { SITE } from "@/lib/config";
 
 const inter = Inter({
@@ -62,6 +63,7 @@ export default function RootLayout({
   return (
     <html lang="pt-PT" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
+        <SiteBackground />
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
