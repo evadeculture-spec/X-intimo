@@ -16,15 +16,16 @@ interface PetalState {
   fall: number;
   sway: number;
   swayAmp: number;
+  flutter: number;
   phase: number;
   scale: number;
 }
 
-/** Pétalas a cair suavemente (instanced — uma só draw call). */
+/** Pétalas realistas a cair com flutter natural (instanced — uma só draw call). */
 export function Petals({
-  count = 40,
+  count = 28,
   area = 13,
-  opacity = 0.96,
+  opacity = 0.94,
 }: {
   count?: number;
   area?: number;
@@ -36,8 +37,9 @@ export function Petals({
     () =>
       new THREE.MeshStandardMaterial({
         side: THREE.DoubleSide,
-        roughness: 0.65,
+        roughness: 0.5,
         metalness: 0,
+        vertexColors: true,
         transparent: true,
         opacity,
       }),
@@ -54,17 +56,18 @@ export function Petals({
         rx: Math.random() * Math.PI,
         ry: Math.random() * Math.PI,
         rz: Math.random() * Math.PI,
-        vr: (Math.random() - 0.5) * 0.9,
-        fall: 0.35 + Math.random() * 0.55,
-        sway: 0.4 + Math.random() * 1.1,
-        swayAmp: 0.25 + Math.random() * 0.55,
+        vr: (Math.random() - 0.5) * 0.4,
+        fall: 0.16 + Math.random() * 0.26, // queda lenta e elegante
+        sway: 0.3 + Math.random() * 0.7,
+        swayAmp: 0.3 + Math.random() * 0.55,
+        flutter: 0.5 + Math.random() * 0.9,
         phase: Math.random() * Math.PI * 2,
-        scale: 0.45 + Math.random() * 0.75,
+        scale: 0.55 + Math.random() * 0.7, // pétalas maiores
       })),
     [count, area],
   );
 
-  // Cor por instância (definida uma vez).
+  // Cor (tom) por instância — multiplica com o gradiente de sombreado da pétala.
   useLayoutEffect(() => {
     const mesh = meshRef.current;
     if (!mesh) return;
@@ -90,10 +93,11 @@ export function Petals({
       }
       const x = p.x + Math.sin(t * p.sway + p.phase) * p.swayAmp;
       dummy.position.set(x, p.y, p.z);
+      // tombo lento + flutter (oscilação) como uma pétala real a planar
       dummy.rotation.set(
-        p.rx + t * p.vr,
-        p.ry + t * p.vr * 0.7,
-        p.rz + t * p.vr * 0.5,
+        p.rx + t * p.vr + Math.sin(t * p.flutter + p.phase) * 0.5,
+        p.ry + t * p.vr * 0.6,
+        p.rz + Math.sin(t * p.flutter * 0.7 + p.phase) * 0.4,
       );
       dummy.scale.setScalar(p.scale);
       dummy.updateMatrix();
@@ -103,6 +107,10 @@ export function Petals({
   });
 
   return (
-    <instancedMesh ref={meshRef} args={[geometry, material, count]} frustumCulled={false} />
+    <instancedMesh
+      ref={meshRef}
+      args={[geometry, material, count]}
+      frustumCulled={false}
+    />
   );
 }

@@ -1,8 +1,8 @@
 /** Pequena flor de 5 pétalas (estilo kalanchoe) em SVG — motivo decorativo da marca. */
 export function FlowerGlyph({
   className = "",
-  color = "#E11900",
-  center = "#F2D9A0",
+  color = "#8A2433",
+  center = "#D9B68A",
 }: {
   className?: string;
   color?: string;
@@ -34,8 +34,8 @@ export function FlowerGlyph({
  */
 export function FloralAccent({
   className = "",
-  colors = ["#FF2A1A", "#E11900", "#FF6A4D"],
-  centerColor = "#F2D9A0",
+  colors = ["#8A2433", "#6E0F1C", "#A0303F"],
+  centerColor = "#D9B68A",
 }: {
   className?: string;
   colors?: [string, string, string] | string[];

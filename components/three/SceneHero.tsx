@@ -24,13 +24,13 @@ const backdropFragment = /* glsl */ `
   varying vec2 vUv;
   void main() {
     vec2 uv = vUv;
-    // creme quente -> blush suave
-    vec3 base = mix(vec3(0.992, 0.976, 0.965), vec3(0.980, 0.918, 0.886), uv.y);
-    float b1 = smoothstep(0.7, 0.0, distance(uv, vec2(0.28 + 0.10*sin(uTime*0.18), 0.32 + 0.10*cos(uTime*0.15))));
-    float b2 = smoothstep(0.6, 0.0, distance(uv, vec2(0.78 + 0.09*cos(uTime*0.13), 0.66 + 0.09*sin(uTime*0.20))));
+    // creme quente -> areia suave (sóbrio e quente)
+    vec3 base = mix(vec3(0.988, 0.972, 0.960), vec3(0.962, 0.918, 0.892), uv.y);
+    float b1 = smoothstep(0.72, 0.0, distance(uv, vec2(0.28 + 0.09*sin(uTime*0.15), 0.32 + 0.09*cos(uTime*0.13))));
+    float b2 = smoothstep(0.62, 0.0, distance(uv, vec2(0.78 + 0.08*cos(uTime*0.12), 0.66 + 0.08*sin(uTime*0.18))));
     vec3 col = base;
-    col = mix(col, vec3(0.945, 0.620, 0.520), b1 * 0.34); // blush coral
-    col = mix(col, vec3(0.870, 0.380, 0.300), b2 * 0.20); // coral mais quente
+    col = mix(col, vec3(0.820, 0.520, 0.470), b1 * 0.20); // rosa-velho subtil
+    col = mix(col, vec3(0.520, 0.110, 0.150), b2 * 0.16); // vinho profundo, muito leve
     gl_FragColor = vec4(col, 1.0);
   }
 `;
@@ -92,8 +92,8 @@ function Silk({ quality }: { quality: Quality }) {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColorA: { value: new THREE.Color("#F6B5A6") },
-      uColorB: { value: new THREE.Color("#C0392B") },
+      uColorA: { value: new THREE.Color("#B5736B") },
+      uColorB: { value: new THREE.Color("#5E0D18") },
     }),
     [],
   );
@@ -149,10 +149,10 @@ function Dust({ count }: { count: number }) {
   return (
     <points ref={ref} geometry={geometry}>
       <pointsMaterial
-        size={0.045}
-        color="#F6B5A6"
+        size={0.04}
+        color="#C08A86"
         transparent
-        opacity={0.55}
+        opacity={0.4}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -181,8 +181,8 @@ function Rig({ children }: { children: React.ReactNode }) {
 /* Cena                                                                */
 /* ------------------------------------------------------------------ */
 export default function SceneHero({ quality = "high" }: { quality?: Quality }) {
-  const dust = quality === "high" ? 180 : 70;
-  const petals = quality === "high" ? 44 : 18;
+  const dust = quality === "high" ? 120 : 50;
+  const petals = quality === "high" ? 26 : 12;
 
   return (
     <Canvas
@@ -209,12 +209,12 @@ export default function SceneHero({ quality = "high" }: { quality?: Quality }) {
       {quality === "high" && (
         <EffectComposer>
           <Bloom
-            intensity={0.55}
-            luminanceThreshold={0.6}
-            luminanceSmoothing={0.35}
+            intensity={0.35}
+            luminanceThreshold={0.7}
+            luminanceSmoothing={0.4}
             mipmapBlur
           />
-          <Vignette eskil={false} offset={0.22} darkness={0.5} />
+          <Vignette eskil={false} offset={0.18} darkness={0.62} />
         </EffectComposer>
       )}
     </Canvas>

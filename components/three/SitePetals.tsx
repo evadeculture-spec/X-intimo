@@ -9,7 +9,7 @@ import { Petals } from "./Petals";
  * pós-processamento — para correr em todas as secções sem pesar.
  */
 export default function SitePetals({ quality }: { quality: "high" | "low" }) {
-  const count = quality === "high" ? 30 : 14;
+  const count = quality === "high" ? 18 : 9;
   return (
     <Canvas
       dpr={quality === "high" ? [1, 1.5] : [1, 1.2]}
@@ -18,9 +18,9 @@ export default function SitePetals({ quality }: { quality: "high" | "low" }) {
       style={{ width: "100%", height: "100%" }}
       frameloop="always"
     >
-      <ambientLight intensity={1.15} />
-      <directionalLight position={[3, 4, 5]} intensity={0.8} />
-      <Petals count={count} area={16} opacity={0.82} />
+      <ambientLight intensity={1.05} />
+      <directionalLight position={[3, 4, 5]} intensity={0.9} />
+      <Petals count={count} area={17} opacity={0.8} />
     </Canvas>
   );
 }
