@@ -51,31 +51,40 @@ A imagem Open Graph é gerada automaticamente em `app/opengraph-image.tsx`.
 | **Marcas** | `data/brands.ts` |
 | **Categorias** | `data/categories.ts` |
 | **Modelos / Lookbook (fotos)** | `data/models.ts` |
+| **Peças que "caem" (3D)** | `data/garments.ts` |
 | **Logótipo** | `public/logo.svg` + `components/Logo.tsx` |
 
 ## Experiência 3D e efeitos
 
-- **Hero com fundo 3D animado** (`components/three/SceneHero.tsx`): degradê warm por
-  shader, **tecido/seda em movimento**, **partículas**, **painéis flutuantes de
-  modelos** com parallax ao rato e **bloom + vinheta** (pós-processamento cinematográfico).
+- **Vestuário a cair pelo site** (`components/three/FallingGarments.tsx`): pijamas,
+  peúgas, meias, bóxers e sutiãs como planos 3D texturados, a tombar/baloiçar com
+  leve inclinação 3D e parallax ao rato.
+  - **Hero** (`SceneHero.tsx`): cena imersiva com fundo quente + vinheta intimista.
+  - **Site inteiro** (`SiteGarments.tsx` via `SiteBackground.tsx`): camada leve,
+    fixa atrás de todo o conteúdo, em todas as secções.
 - **Performance e acessibilidade automáticas:**
-  - Desktop → qualidade alta (com bloom).
-  - Telemóvel → versão mais leve (menos partículas, sem bloom).
-  - `prefers-reduced-motion` → fundo estático elegante (sem 3D).
-  - A cena é carregada de forma dinâmica, por isso **não pesa no bundle inicial**.
-- **Secção Lookbook** (`components/Lookbook.tsx`): galeria editorial de modelos com
-  produtos Ysabel Mora, com tilt no hover.
+  - Desktop → mais peças; Telemóvel → menos peças.
+  - `prefers-reduced-motion` → fundo estático (sem 3D).
+  - As cenas são carregadas dinamicamente, por isso **não pesam no bundle inicial**.
+- **Secção Lookbook** (`components/Lookbook.tsx`): galeria editorial de modelos.
 
-### Fotos de modelos (Ysabel Mora)
+### Hiper-realismo: fotos reais das peças (recomendado)
 
-Os modelos usam **placeholders elegantes** (gerados por código, marcados como
-placeholder) tanto no hero 3D como no Lookbook. Para usar fotografias reais:
+As peças usam **ilustrações-placeholder** desenhadas por código (claramente
+marcadas). Para o efeito **hiper-realista**, usa **PNGs recortados (fundo
+transparente)** das peças reais:
 
-1. Coloca as imagens em `public/models/` (ex.: `public/models/termico.jpg`).
-2. Em `data/models.ts`, troca `image: null` por `image: "/models/termico.jpg"`.
+1. Exporta cada peça em PNG com fundo transparente para `public/garments/`
+   (ex.: `public/garments/pijama.png`).
+2. Em `data/garments.ts`, troca `image: null` por `image: "/garments/pijama.png"`.
 
-As fotos aparecem automaticamente no hero 3D **e** no Lookbook, com fallback
-seguro para o placeholder se a imagem faltar.
+As fotos aparecem automaticamente no hero **e** na camada do site inteiro, com
+fallback seguro para o placeholder se a imagem faltar.
+
+### Fotos de modelos (Lookbook)
+
+Mesma lógica para a secção Lookbook: coloca imagens em `public/models/` e
+aponta `image` em `data/models.ts`.
 
 ### Número de WhatsApp
 

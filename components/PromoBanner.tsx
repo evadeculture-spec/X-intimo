@@ -2,7 +2,6 @@
 
 import { Reveal } from "./Reveal";
 import { ArrowIcon } from "./Icons";
-import { FloralAccent } from "./FloralAccent";
 import { PROMO } from "@/lib/config";
 import { genericWhatsAppLink } from "@/lib/whatsapp";
 
@@ -15,11 +14,6 @@ export function PromoBanner() {
       <Reveal className="relative overflow-hidden rounded-4xl bg-gradient-to-br from-accent to-accent-dark px-6 py-10 text-white sm:px-12 sm:py-14">
         <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/10" />
         <div className="pointer-events-none absolute -bottom-16 left-1/4 h-56 w-56 rounded-full bg-white/5" />
-        <FloralAccent
-          className="absolute right-6 top-2 h-24 w-40 opacity-90"
-          colors={["#FFFFFF", "#FFE2DA", "#FFC9BC"]}
-          centerColor="#FFF3CC"
-        />
 
         <div className="relative flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="max-w-xl">
