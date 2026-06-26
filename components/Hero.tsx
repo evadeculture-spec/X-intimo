@@ -144,17 +144,20 @@ export function Hero() {
         </div>
       </div>
 
-      {/* indicador de scroll */}
+      {/* indicador de scroll horizontal (desktop) */}
       <motion.div
-        className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 lg:block"
+        className="pointer-events-none absolute bottom-7 right-8 hidden items-center gap-3 lg:flex"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
       >
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-ink/20 p-1.5">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">
+          Deslize
+        </span>
+        <div className="flex h-6 w-12 items-center justify-start rounded-full border border-ink/20 px-1.5">
           <motion.span
-            className="h-2 w-1 rounded-full bg-accent"
-            animate={{ y: [0, 10, 0] }}
+            className="h-1.5 w-3 rounded-full bg-accent"
+            animate={{ x: [0, 22, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>

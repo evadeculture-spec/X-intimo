@@ -10,10 +10,17 @@ export function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 500);
-    onScroll();
+    // Aparece após um scroll vertical (mobile) OU pouco depois de carregar
+    // (no desktop o scroll é horizontal, por isso não dependemos de scrollY).
+    const onScroll = () => {
+      if (window.scrollY > 500) setVisible(true);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const t = window.setTimeout(() => setVisible(true), 1600);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(t);
+    };
   }, []);
 
   return (

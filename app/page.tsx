@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { HorizontalScroll } from "@/components/HorizontalScroll";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
 import { BrandHighlights } from "@/components/BrandHighlights";
@@ -16,7 +17,9 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
+
+      {/* No desktop o site desliza para a direita; no telemóvel mantém-se vertical. */}
+      <HorizontalScroll>
         <Hero />
         <TrustBar />
         <BrandHighlights />
@@ -27,8 +30,8 @@ export default function HomePage() {
         <HowToBuy />
         <PromoBanner />
         <ContactSection />
-      </main>
-      <Footer />
+        <Footer />
+      </HorizontalScroll>
 
       {/* Overlays */}
       <PedidoDrawer />
