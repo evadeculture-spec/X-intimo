@@ -25,6 +25,20 @@ export const SITE = {
   },
 } as const;
 
+// Vídeo de campanha (anúncio gerado no Higgsfield, estilo Ysabel Mora).
+// ⚠️ RECOMENDADO: descarregar o mp4 e colocá-lo em /public/campanha/anuncio.mp4
+// (e o poster em /public/campanha/anuncio-poster.png), trocando os URLs abaixo
+// por "/campanha/anuncio.mp4" e "/campanha/anuncio-poster.png" — os links do
+// CDN do Higgsfield podem expirar.
+export const CAMPAIGN_VIDEO = {
+  src: "https://d8j0ntlcm91z4.cloudfront.net/user_3FNZX8hWHOXhzig1wENoUYSyPbO/hf_20260709_223129_47c3f0c6-8b04-41f4-8f00-255a9e51e91e.mp4",
+  poster:
+    "https://d8j0ntlcm91z4.cloudfront.net/user_3FNZX8hWHOXhzig1wENoUYSyPbO/hf_20260709_222346_45a9fe29-4387-4e8c-bce0-79dfc2a8bede.png",
+  eyebrow: "A nossa campanha",
+  title: "Momentos de conforto, em casa",
+  text: "Peças que acompanham os dias tranquilos — do primeiro café da manhã ao fim da tarde.",
+} as const;
+
 // Texto da faixa promocional (secção de campanha) — fácil de alterar.
 export const PROMO = {
   eyebrow: "Novidade",

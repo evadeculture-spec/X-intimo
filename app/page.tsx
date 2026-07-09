@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { CampaignVideo } from "@/components/CampaignVideo";
 import { TrustBar } from "@/components/TrustBar";
 import { BrandHighlights } from "@/components/BrandHighlights";
 import { Lookbook } from "@/components/Lookbook";
@@ -24,6 +25,8 @@ export default function HomePage() {
       <main>
         <Hero />
         <TrustBar />
+        {/* anúncio em vídeo (Higgsfield) logo após a confiança: emoção antes da escolha */}
+        <CampaignVideo />
         <CategoryGrid />
         <ProductGrid />
         {/* "Como comprar" logo após os produtos: remove fricção no momento da decisão */}
