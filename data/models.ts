@@ -26,8 +26,8 @@ export const modelLooks: ModelLook[] = [
     title: "Coleção Térmica",
     product: "Camisola e leggings térmicas",
     image: null,
-    from: "#F6D9CF",
-    to: "#C1351D",
+    from: "#F0DCD2",
+    to: "#8A4A3C",
   },
   {
     id: "interiores",
@@ -42,8 +42,8 @@ export const modelLooks: ModelLook[] = [
     title: "Meias & Collants",
     product: "Coleção de meias Ysabel Mora",
     image: null,
-    from: "#FBEDE9",
-    to: "#E8755C",
+    from: "#F5E8E2",
+    to: "#C08A78",
   },
   {
     id: "noite",
@@ -51,6 +51,6 @@ export const modelLooks: ModelLook[] = [
     product: "Homewear suave",
     image: null,
     from: "#EFE6DC",
-    to: "#9A2A16",
+    to: "#5E1723",
   },
 ];

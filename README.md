@@ -51,35 +51,21 @@ A imagem Open Graph é gerada automaticamente em `app/opengraph-image.tsx`.
 | **Marcas** | `data/brands.ts` |
 | **Categorias** | `data/categories.ts` |
 | **Modelos / Lookbook (fotos)** | `data/models.ts` |
-| **Peças que "caem" (3D)** | `data/garments.ts` |
 | **Logótipo** | `public/logo.svg` + `components/Logo.tsx` |
 
 ## Experiência 3D e efeitos
 
-- **Vestuário a cair pelo site** (`components/three/FallingGarments.tsx`): pijamas,
-  peúgas, meias, bóxers e sutiãs como planos 3D texturados, a tombar/baloiçar com
-  leve inclinação 3D e parallax ao rato.
-  - **Hero** (`SceneHero.tsx`): cena imersiva com fundo quente + vinheta intimista.
-  - **Site inteiro** (`SiteGarments.tsx` via `SiteBackground.tsx`): camada leve,
-    fixa atrás de todo o conteúdo, em todas as secções.
+- **Hero intimista** (`components/three/SceneHero.tsx`): cortinas de cetim/seda
+  em tons quentes (`SilkDrape.tsx`) a ondular devagar, com simulação de pano no
+  vertex shader (normais recalculadas), material físico com sheen de tecido,
+  iluminação de estúdio (`Lighting.tsx`) e pós-processamento subtil
+  (bloom + vinheta). Sem texturas gráficas — só luz e material, para um
+  resultado realista e sóbrio.
 - **Performance e acessibilidade automáticas:**
-  - Desktop → mais peças; Telemóvel → menos peças.
+  - Desktop → mais subdivisões e efeitos; Telemóvel → cena mais leve.
   - `prefers-reduced-motion` → fundo estático (sem 3D).
-  - As cenas são carregadas dinamicamente, por isso **não pesam no bundle inicial**.
+  - A cena é carregada dinamicamente, por isso **não pesa no bundle inicial**.
 - **Secção Lookbook** (`components/Lookbook.tsx`): galeria editorial de modelos.
-
-### Hiper-realismo: fotos reais das peças (recomendado)
-
-As peças usam **ilustrações-placeholder** desenhadas por código (claramente
-marcadas). Para o efeito **hiper-realista**, usa **PNGs recortados (fundo
-transparente)** das peças reais:
-
-1. Exporta cada peça em PNG com fundo transparente para `public/garments/`
-   (ex.: `public/garments/pijama.png`).
-2. Em `data/garments.ts`, troca `image: null` por `image: "/garments/pijama.png"`.
-
-As fotos aparecem automaticamente no hero **e** na camada do site inteiro, com
-fallback seguro para o placeholder se a imagem faltar.
 
 ### Fotos de modelos (Lookbook)
 

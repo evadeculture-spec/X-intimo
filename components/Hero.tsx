@@ -92,7 +92,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
           >
-            Conforto, elegância e qualidade para todos os dias.
+            Conforto que se sente na pele, todos os dias.
           </motion.h1>
 
           <motion.p
