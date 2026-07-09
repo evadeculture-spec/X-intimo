@@ -19,7 +19,8 @@ export function CategoryGrid() {
   return (
     <section id="categorias" className="container-x py-16 sm:py-24">
       <SectionHeading
-        eyebrow="Categorias"
+        step="01"
+        eyebrow="Escolher a categoria"
         title="Encontre o que procura, sem complicações"
         subtitle="Navegue pelas categorias principais ou por quem vai usar. Clique para ver os produtos."
       />

@@ -32,6 +32,9 @@ const ITEMS = [
 export function TrustBar() {
   return (
     <section className="container-x py-12 sm:py-16">
+      <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">
+        Porquê comprar na X Íntimo
+      </p>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {ITEMS.map((item, i) => {
           const Icon = item.icon;
@@ -39,7 +42,7 @@ export function TrustBar() {
             <Reveal
               key={item.title}
               delayIndex={i}
-              className="card-surface flex flex-col gap-3 p-5 transition-shadow hover:shadow-lift"
+              className="card-surface flex flex-col gap-3 p-5 transition-shadow hover:shadow-lift last:col-span-2 sm:last:col-span-1"
             >
               <span className="grid h-11 w-11 place-items-center rounded-2xl bg-accent-tint text-accent-dark">
                 <Icon className="h-5 w-5" />

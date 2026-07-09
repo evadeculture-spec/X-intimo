@@ -32,6 +32,7 @@ export function ContactSection() {
         {/* Info */}
         <div>
           <SectionHeading
+            step="05"
             eyebrow="Contactos"
             title="Falar connosco é fácil"
             subtitle="Estamos a um clique de distância. Escolha a forma que lhe der mais jeito."

@@ -1,5 +1,4 @@
 import { Header } from "@/components/Header";
-import { HorizontalScroll } from "@/components/HorizontalScroll";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
 import { BrandHighlights } from "@/components/BrandHighlights";
@@ -18,20 +17,25 @@ export default function HomePage() {
     <>
       <Header />
 
-      {/* No desktop o site desliza para a direita; no telemóvel mantém-se vertical. */}
-      <HorizontalScroll>
+      {/*
+       * Scroll vertical clássico (de cima para baixo), organizado como funil
+       * de conversão: confiança → escolher → pedir → provas → contacto.
+       */}
+      <main>
         <Hero />
         <TrustBar />
-        <BrandHighlights />
-        <Lookbook />
         <CategoryGrid />
         <ProductGrid />
         {/* "Como comprar" logo após os produtos: remove fricção no momento da decisão */}
         <HowToBuy />
         <PromoBanner />
+        <BrandHighlights />
+        <Lookbook />
         <ContactSection />
         <Footer />
-      </HorizontalScroll>
+        {/* espaço para a barra de CTA fixa no telemóvel */}
+        <div className="h-20 sm:hidden" aria-hidden />
+      </main>
 
       {/* Overlays */}
       <PedidoDrawer />

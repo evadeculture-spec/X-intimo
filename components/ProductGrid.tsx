@@ -31,7 +31,8 @@ export function ProductGrid() {
       <div className="pointer-events-none absolute right-[-8%] top-32 -z-10 h-80 w-80 rounded-full bg-accent-soft/10 blur-3xl" />
       <div className="container-x">
       <SectionHeading
-        eyebrow="Produtos em destaque"
+        step="02"
+        eyebrow="Montar o pedido"
         title="Escolha as suas peças favoritas"
         subtitle="Adicione ao pedido e envie tudo por WhatsApp. Confirmamos disponibilidade, preço e entrega consigo."
       />

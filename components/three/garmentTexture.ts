@@ -278,6 +278,42 @@ function drawBra(ctx: CanvasRenderingContext2D, base: string) {
   }
 }
 
+/* Grão/trama de tecido pintado só sobre a silhueta já desenhada. */
+function clothGrain(ctx: CanvasRenderingContext2D, w: number, h: number) {
+  ctx.save();
+  ctx.globalCompositeOperation = "source-atop";
+
+  // fios diagonais muito finos (efeito de malha)
+  ctx.globalAlpha = 0.05;
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth = 1;
+  for (let d = -h; d < w; d += 4) {
+    ctx.beginPath();
+    ctx.moveTo(d, 0);
+    ctx.lineTo(d + h, h);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 0.04;
+  ctx.strokeStyle = "#fff";
+  for (let d = -h + 2; d < w; d += 4) {
+    ctx.beginPath();
+    ctx.moveTo(d, 0);
+    ctx.lineTo(d + h, h);
+    ctx.stroke();
+  }
+
+  // ruído pontual (fibras)
+  ctx.globalAlpha = 0.08;
+  for (let i = 0; i < 900; i++) {
+    const x = Math.random() * w;
+    const y = Math.random() * h;
+    ctx.fillStyle = Math.random() > 0.5 ? "#fff" : "#000";
+    ctx.fillRect(x, y, 1, 1);
+  }
+  ctx.restore();
+  ctx.globalAlpha = 1;
+}
+
 function paint(ctx: CanvasRenderingContext2D, type: GarmentType, base: string) {
   switch (type) {
     case "pijama-top":
@@ -308,12 +344,57 @@ export function makeGarmentTexture(type: GarmentType, color: string): GarmentTex
   canvas.height = h;
   const ctx = canvas.getContext("2d")!;
   paint(ctx, type, color);
+  clothGrain(ctx, w, h);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 4;
+  texture.anisotropy = 8;
   texture.needsUpdate = true;
   return { texture, aspect: w / h };
+}
+
+let weaveCache: THREE.Texture | null = null;
+
+/**
+ * Trama de tecido repetível (grayscale) usada como bumpMap nos materiais —
+ * dá o relevo fino de malha que faz o tecido reagir à luz de forma realista.
+ */
+export function makeWeaveBumpTexture(): THREE.Texture {
+  if (weaveCache) return weaveCache;
+  const s = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = s;
+  canvas.height = s;
+  const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "#808080";
+  ctx.fillRect(0, 0, s, s);
+
+  // trama: fios horizontais e verticais alternados
+  for (let y = 0; y < s; y += 4) {
+    ctx.fillStyle = y % 8 === 0 ? "#8e8e8e" : "#727272";
+    ctx.fillRect(0, y, s, 2);
+  }
+  for (let x = 0; x < s; x += 4) {
+    ctx.globalAlpha = 0.5;
+    ctx.fillStyle = x % 8 === 0 ? "#8a8a8a" : "#767676";
+    ctx.fillRect(x, 0, 2, s);
+    ctx.globalAlpha = 1;
+  }
+  // fibras irregulares
+  for (let i = 0; i < 1400; i++) {
+    const v = 118 + Math.floor(Math.random() * 24);
+    ctx.fillStyle = `rgb(${v},${v},${v})`;
+    ctx.fillRect(Math.random() * s, Math.random() * s, 1, 1);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(3, 3);
+  texture.anisotropy = 4;
+  texture.needsUpdate = true;
+  weaveCache = texture;
+  return texture;
 }
 
 /** Carrega o PNG real (se existir) por cima do placeholder; senão mantém o placeholder. */

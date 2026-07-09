@@ -3,8 +3,10 @@
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { EffectComposer, Vignette } from "@react-three/postprocessing";
+import { Sparkles } from "@react-three/drei";
+import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import { FallingGarments } from "./FallingGarments";
+import { EnvLight, StudioLights } from "./Lighting";
 
 type Quality = "high" | "low";
 
@@ -66,26 +68,51 @@ function Rig({ children }: { children: React.ReactNode }) {
 }
 
 export default function SceneHero({ quality = "high" }: { quality?: Quality }) {
-  const count = quality === "high" ? 11 : 6;
+  const high = quality === "high";
+  const count = high ? 11 : 6;
 
   return (
     <Canvas
-      dpr={quality === "high" ? [1, 1.8] : [1, 1.3]}
+      dpr={high ? [1, 2] : [1, 1.5]}
       camera={{ position: [0, 0, 7], fov: 45 }}
       gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
       style={{ width: "100%", height: "100%" }}
     >
       <color attach="background" args={["#FBF6F1"]} />
-      <ambientLight intensity={1} />
+
+      {/* Iluminação realista: estúdio de 3 pontos + ambiente pré-filtrado */}
+      <EnvLight />
+      <StudioLights intensity={high ? 1 : 0.9} />
 
       <Backdrop />
 
       <Rig>
-        <FallingGarments count={count} area={11} sizeBase={1.7} />
+        <FallingGarments
+          count={count}
+          area={11}
+          sizeBase={1.7}
+          segments={high ? 32 : 20}
+          clearCenter
+        />
+        {/* pó/fibras em suspensão apanhados pela luz */}
+        <Sparkles
+          count={high ? 70 : 30}
+          scale={[13, 8, 5]}
+          size={2.2}
+          speed={0.25}
+          opacity={0.45}
+          color="#e9c9b4"
+        />
       </Rig>
 
-      {quality === "high" && (
+      {high && (
         <EffectComposer>
+          <Bloom
+            intensity={0.22}
+            luminanceThreshold={0.82}
+            luminanceSmoothing={0.3}
+            mipmapBlur
+          />
           <Vignette eskil={false} offset={0.18} darkness={0.62} />
         </EffectComposer>
       )}

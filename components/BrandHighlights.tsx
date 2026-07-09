@@ -19,6 +19,7 @@ export function BrandHighlights() {
   return (
     <section id="marcas" className="container-x py-16 sm:py-24">
       <SectionHeading
+        step="04"
         eyebrow="Marcas em destaque"
         title="Marcas de confiança, escolhidas a dedo"
         subtitle="Selecionamos marcas conhecidas pela qualidade e pelo conforto. Há sempre espaço para acrescentar novas."
